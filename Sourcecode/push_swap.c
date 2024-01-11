@@ -2,8 +2,10 @@
 
 void	ft_swap_init(t_swap *swap)
 {
-	swap->nb = 0;
-	swap->nbs = NULL; 
+	swap->stack_b = NULL;
+	swap->stack_a = NULL;
+	swap->size_a = 0;
+	swap->size_b = 0;
 }
 
 void	ft_check_args(t_swap *swap, char *argv[])
@@ -17,7 +19,10 @@ void	ft_check_args(t_swap *swap, char *argv[])
 	{
 		while(argv[c][i] != '\0')
 		{
-			if(!(argv[c][i] >= '0' && argv[c][i] <= '9')) //|| argv[c][i] == '-'))
+			if (!((argv[c][i] >= '0' && argv[c][i] <= '9')
+				|| (argv[c][i] == '+' || argv[c][i] == '-')))
+				ft_errors(swap, 1);
+			if (argv[c][i + 1] == '+' || argv[c][i + 1] == '-')
 				ft_errors(swap, 1);
 			i++;
 		}
@@ -35,15 +40,21 @@ void	ft_get_number(t_swap *swap, char *argv[])
 	len = 0;
 	while(argv[++i] != NULL)
 		len++;
-	swap->nbs = (int *)malloc (sizeof(int) * len + 1);
-	if(!swap->nbs)
+	swap->stack_a = (int *)malloc(sizeof(int) * (len + 1));
+	swap->stack_b = (int *)malloc(sizeof(int) * (len + 1));
+	if (!swap->stack_a || !swap->stack_b)
 		ft_errors(swap, 2);
+	swap->stack_a[len] = '\0';
+	swap->stack_b[len] = '\0';
 	i = 0;
 	while(argv[++i] != NULL)
-		swap->nbs[i - 1] = ft_atoi(argv[i]);
-	/*i = -1;
-	while(swap->nbs[++i] != '\0')
-		ft_printf("%d\n", swap->nbs[i]);*/
+	{
+		swap->stack_a[i - 1] = ft_atol(argv[i], swap);
+		swap->size_a++;
+	}
+	i = -1;
+	while(swap->stack_a[++i] != '\0')
+		ft_check_for_dups(swap, swap->stack_a[i], i);
 }
 
 int	main(int argc, char *argv[])
