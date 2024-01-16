@@ -83,4 +83,5 @@ void	ft_sort_stack(t_swap *swap)
 		ft_sort_size_three(swap);
 	if(swap->size_a == 4)
 		ft_sort_size_four(swap);
+	ft_push(swap, "pb");
 }
