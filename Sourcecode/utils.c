@@ -32,10 +32,53 @@ void	ft_check_for_dups(t_swap *swap, char dup, int i)
 {
 	int	i_cpy;
 
-	i_cpy = i; 
+	i_cpy = i;
 	while (swap->stack_a[++i_cpy] != '\0')
 	{
 		if (dup == swap->stack_a[i_cpy])
 			ft_errors(swap, 4);
 	}
+}
+
+int	ft_sorted(t_swap *swap)
+{
+	int i;
+
+	i = -1;
+	while(swap->stack_a[++i + 1] != '\0')
+	{
+		if (swap->stack_a[i] > swap->stack_a[i + 1])
+			return (1);
+	}
+	return (0);
+}
+
+int	ft_get_min_num(t_swap *swap)
+{
+	int	min;
+	int	i;
+
+	i =-1;
+	min = swap->stack_a[0];
+	while(swap->stack_a[++i] != '\0')
+	{
+		if(min > swap->stack_a[i])
+			min = swap->stack_a[i];
+	}
+	return (min);
+}
+
+int	ft_get_max_num(t_swap *swap)
+{
+	int	max;
+	int	i;
+
+	i = -1;
+	max = swap->stack_a[0];
+	while(swap->stack_a[++i] != '\0')
+	{
+		if(max < swap->stack_a[i])
+			max = swap->stack_a[i];
+	}
+	return (max);
 }
