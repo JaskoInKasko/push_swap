@@ -52,33 +52,3 @@ int	ft_sorted(t_swap *swap)
 	}
 	return (0);
 }
-
-int	ft_get_min_num(t_swap *swap)
-{
-	int	min;
-	int	i;
-
-	i =-1;
-	min = swap->stack_a[0];
-	while(swap->stack_a[++i] != '\0')
-	{
-		if(min > swap->stack_a[i])
-			min = swap->stack_a[i];
-	}
-	return (min);
-}
-
-int	ft_get_max_num(t_swap *swap)
-{
-	int	max;
-	int	i;
-
-	i = -1;
-	max = swap->stack_a[0];
-	while(swap->stack_a[++i] != '\0')
-	{
-		if(max < swap->stack_a[i])
-			max = swap->stack_a[i];
-	}
-	return (max);
-}

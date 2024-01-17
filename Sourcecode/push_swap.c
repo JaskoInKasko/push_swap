@@ -55,15 +55,15 @@ void	ft_get_number(t_swap *swap, char *argv[])
 	i = -1;
 	while(swap->stack_a[++i] != '\0')
 		ft_check_for_dups(swap, swap->stack_a[i], i);
-	//if (ft_sorted(swap) == 1)
-	//	ft_free_all(swap, 2);
+	if (ft_sorted(swap) == 0)
+		ft_free_all(swap);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_swap	swap;
 
-	if(argc != 1)
+	if (argc != 1)
 	{
 		ft_swap_init(&swap);
 		ft_check_args(&swap, argv);
