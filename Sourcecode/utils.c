@@ -1,5 +1,5 @@
 #include "../inc/push_swap.h"
-#include <stdio.h>
+
 int    ft_atol(const char *nptr, t_swap *swap)
 {
 	long int	res;
@@ -45,10 +45,60 @@ int	ft_sorted(t_swap *swap)
 	int i;
 
 	i = -1;
-	while(swap->stack_a[++i + 1] != '\0')
+	while(++i + 1 < swap->size_a)
 	{
 		if (swap->stack_a[i] > swap->stack_a[i + 1])
 			return (1);
 	}
 	return (0);
+}
+
+void	ft_get_distance_ra(t_swap *swap)
+{
+	swap->distance_max_ra = 0;
+	swap->distance_min_ra = 0;
+	if (swap->stack_a[1] == swap->max_a)
+		swap->distance_max_ra = 1;
+	if (swap->stack_a[2] == swap->max_a)
+		swap->distance_max_ra = 2;
+	if (swap->stack_a[3] == swap->max_a)
+		swap->distance_max_ra = 3;
+	if (swap->stack_a[1] == swap->min_a)
+		swap->distance_min_ra = 1;
+	if (swap->stack_a[2] == swap->min_a)
+		swap->distance_min_ra = 2;
+	if (swap->stack_a[3] == swap->min_a)
+		swap->distance_min_ra = 3;
+	if(swap->size_a == 5)
+	{
+		if (swap->stack_a[4] == swap->min_a)
+			swap->distance_min_ra = 4;
+		if (swap->stack_a[4] == swap->max_a)
+			swap->distance_max_ra = 4;
+	}
+}
+
+void	ft_get_distance_rra(t_swap *swap)
+{
+	swap->distance_max_rra = 0;
+	swap->distance_min_rra = 0;
+	if(swap->size_a == 5)
+	{
+		if (swap->stack_a[4] == swap->max_a)
+			swap->distance_max_rra = 1;
+		if (swap->stack_a[4] == swap->min_a)
+			swap->distance_min_rra = 1;
+	}
+	if (swap->stack_a[3] == swap->max_a)
+		swap->distance_max_rra = 2;
+	if (swap->stack_a[2] == swap->max_a)
+		swap->distance_max_rra = 3;
+	if (swap->stack_a[1] == swap->max_a)
+		swap->distance_max_rra = 4;
+	if (swap->stack_a[3] == swap->min_a)
+		swap->distance_min_rra = 2;
+	if (swap->stack_a[2] == swap->min_a)
+		swap->distance_min_rra = 3;
+	if (swap->stack_a[1] == swap->min_a)
+		swap->distance_min_rra = 4;
 }

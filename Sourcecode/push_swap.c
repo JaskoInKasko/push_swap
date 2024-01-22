@@ -6,6 +6,8 @@ void	ft_swap_init(t_swap *swap)
 	swap->stack_a = NULL;
 	swap->size_a = 0;
 	swap->size_b = 0;
+	swap->min_a = 0;
+	swap->max_a = 0;
 }
 
 void	ft_check_args(t_swap *swap, char *argv[])

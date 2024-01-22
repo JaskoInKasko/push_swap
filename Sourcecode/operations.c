@@ -101,3 +101,31 @@ void	ft_rev_rotate(t_swap *swap, char *arg)
 			ft_putendl_fd(arg, STDOUT_FILENO);
 	}
 }
+
+void	ft_radix_sort(t_swap *swap)
+{
+	int	i;
+	int	j;
+	int	size;
+	int	ary_div_size;
+
+	i = -1;
+	size = swap->size_a;
+	ary_div_size = 1;
+	while(size > 1 && ary_div_size++)
+		size /= 2;
+	size = swap->size_a;
+	while(++i < ary_div_size)
+	{
+		j = 0;
+		while(j++ < size)
+		{
+			if(((swap->stack_a[0] >> i) & 1) == 0)
+				ft_push(swap, "pb");
+			else
+				ft_rotate(swap, "ra");
+		}
+		while(swap->size_b > 0)
+			ft_push(swap, "pa");
+	}
+}
