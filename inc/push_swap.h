@@ -18,7 +18,7 @@ typedef struct s_swap
 
 //		UTILS
 int		ft_atol(const char *nptr, t_swap *swap);
-void	ft_check_for_dups(t_swap *swap, char dup, int i);
+void	ft_check_for_dups(t_swap *swap, int dup, int i);
 int		ft_sorted(t_swap *swap);
 void	ft_get_distance_ra(t_swap *swap);
 void	ft_get_distance_rra(t_swap *swap);

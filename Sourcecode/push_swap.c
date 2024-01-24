@@ -26,6 +26,9 @@ void	ft_check_args(t_swap *swap, char *argv[])
 				ft_errors(swap, 1);
 			if (argv[c][i + 1] == '+' || argv[c][i + 1] == '-')
 				ft_errors(swap, 1);
+			if ((argv[c][i] == '+' || argv[c][i] == '-') &&
+				argv[c][i + 1] == '\0')
+				ft_errors(swap, 1);
 			i++;
 		}
 		i = 0;
@@ -55,7 +58,7 @@ void	ft_get_number(t_swap *swap, char *argv[])
 		swap->size_a++;
 	}
 	i = -1;
-	while(swap->stack_a[++i] != '\0')
+	while(++i < swap->size_a)
 		ft_check_for_dups(swap, swap->stack_a[i], i);
 	if (ft_sorted(swap) == 0)
 		ft_free_all(swap);

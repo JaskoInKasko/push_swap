@@ -28,12 +28,12 @@ int    ft_atol(const char *nptr, t_swap *swap)
 	return ((int)res);
 }
 
-void	ft_check_for_dups(t_swap *swap, char dup, int i)
+void	ft_check_for_dups(t_swap *swap, int dup, int i)
 {
 	int	i_cpy;
 
 	i_cpy = i;
-	while (swap->stack_a[++i_cpy] != '\0')
+	while (++i_cpy < swap->size_a)
 	{
 		if (dup == swap->stack_a[i_cpy])
 			ft_errors(swap, 4);
