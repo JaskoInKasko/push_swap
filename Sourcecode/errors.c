@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsakanov <jsakanov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/25 13:26:39 by jsakanov          #+#    #+#             */
+/*   Updated: 2024/01/25 13:26:42 by jsakanov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../inc/push_swap.h"
 
-void    ft_errors(t_swap *swap, int n)
+void	ft_errors(t_swap *swap, int n)
 {
-    ft_putstr_fd("Error\n", STDERR_FILENO);
-    if(n == 1)
-        exit(EXIT_FAILURE);
-    ft_free_all(swap);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	if (n == 1)
+		exit(EXIT_FAILURE);
+	ft_free_all(swap);
 }

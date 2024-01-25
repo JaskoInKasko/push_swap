@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsakanov <jsakanov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/25 13:26:27 by jsakanov          #+#    #+#             */
+/*   Updated: 2024/01/25 13:26:30 by jsakanov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../inc/push_swap.h"
 
 void	ft_swap_init(t_swap *swap)
@@ -17,9 +28,9 @@ void	ft_check_args(t_swap *swap, char *argv[])
 
 	i = 0;
 	c = 1;
-	while(argv[c] != NULL)
+	while (argv[c] != NULL)
 	{
-		while(argv[c][i] != '\0')
+		while (argv[c][i] != '\0')
 		{
 			if (!((argv[c][i] >= '0' && argv[c][i] <= '9')
 				|| (argv[c][i] == '+' || argv[c][i] == '-')))
@@ -43,7 +54,7 @@ void	ft_get_number(t_swap *swap, char *argv[])
 
 	i = 0;
 	len = 0;
-	while(argv[++i] != NULL)
+	while (argv[++i] != NULL)
 		len++;
 	swap->stack_a = (int *)malloc(sizeof(int) * (len + 1));
 	swap->stack_b = (int *)malloc(sizeof(int) * (len + 1));
@@ -52,13 +63,13 @@ void	ft_get_number(t_swap *swap, char *argv[])
 	swap->stack_a[len] = '\0';
 	swap->stack_b[len] = '\0';
 	i = 0;
-	while(argv[++i] != NULL)
+	while (argv[++i] != NULL)
 	{
 		swap->stack_a[i - 1] = ft_atol(argv[i], swap);
 		swap->size_a++;
 	}
 	i = -1;
-	while(++i < swap->size_a)
+	while (++i < swap->size_a)
 		ft_check_for_dups(swap, swap->stack_a[i], i);
 	if (ft_sorted(swap) == 0)
 		ft_free_all(swap);
