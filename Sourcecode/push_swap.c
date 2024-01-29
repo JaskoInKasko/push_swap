@@ -13,6 +13,7 @@
 
 void	ft_swap_init(t_swap *swap)
 {
+	swap->args = NULL;
 	swap->stack_b = NULL;
 	swap->stack_a = NULL;
 	swap->size_a = 0;
@@ -23,14 +24,29 @@ void	ft_swap_init(t_swap *swap)
 
 void	ft_get_args(t_swap *swap, char *argv[])
 {
-	char	*tmp;
 	int		i;
+	char	*tmp;
 
-	tmp = ft_strdup("");
 	i = 0;
+	tmp = ft_strdup("");
+	if(!tmp)
+		ft_errors(swap, 0);
 	while(argv[++i] != NULL)
-		tmp = ft_strjoin(argv[i], " ");
+	{
+		tmp = ft_strjoin_free(tmp, argv[i]);
+		if(!tmp)
+			ft_errors(swap, 0);
+		tmp = ft_strjoin_free(tmp, " ");
+		if(!tmp)
+			ft_errors(swap, 0);
+	}
 	swap->args = ft_split(tmp, ' ');
+	if(!swap->args)
+	{
+		free(tmp);
+		ft_errors(swap, 0);
+	}
+	free(tmp);
 }
 
 void	ft_check_args(t_swap *swap, char *argv[])
@@ -40,18 +56,18 @@ void	ft_check_args(t_swap *swap, char *argv[])
 
 	c = 1;
 	ft_get_args(swap, argv);
-	while(argv[c] != NULL)
+	while(swap->args[c] != NULL)
 	{
 		i = 0;
-		while(argv[c][i] != '\0')
+		while(swap->args[c][i] != '\0')
 		{
-			if (!((argv[c][i] >= '0' && argv[c][i] <= '9')
-				|| (argv[c][i] == '+' || argv[c][i] == '-')))
+			if (!((swap->args[c][i] >= '0' && swap->args[c][i] <= '9')
+				|| (swap->args[c][i] == '+' || swap->args[c][i] == '-')))
 				ft_errors(swap, 1);
-			if (argv[c][i + 1] == '+' || argv[c][i + 1] == '-')
+			if (swap->args[c][i + 1] == '+' || swap->args[c][i + 1] == '-')
 				ft_errors(swap, 1);
-			if ((argv[c][i] == '+' || argv[c][i] == '-') &&
-				argv[c][i + 1] == '\0')
+			if ((swap->args[c][i] == '+' || swap->args[c][i] == '-') &&
+				swap->args[c][i + 1] == '\0')
 				ft_errors(swap, 1);
 			i++;
 		}
@@ -59,14 +75,14 @@ void	ft_check_args(t_swap *swap, char *argv[])
 	}
 }
 
-void	ft_get_number(t_swap *swap, char *argv[])
+void	ft_get_number(t_swap *swap)
 {
 	int	i;
 	int	len;
 
-	i = 0;
+	i = -1;
 	len = 0;
-	while (argv[++i] != NULL)
+	while (swap->args[++i] != NULL)
 		len++;
 	swap->stack_a = (int *)malloc(sizeof(int) * (len + 1));
 	swap->stack_b = (int *)malloc(sizeof(int) * (len + 1));
@@ -74,10 +90,10 @@ void	ft_get_number(t_swap *swap, char *argv[])
 		ft_errors(swap, 2);
 	swap->stack_a[len] = '\0';
 	swap->stack_b[len] = '\0';
-	i = 0;
-	while (argv[++i] != NULL)
+	i = -1;
+	while (swap->args[++i] != NULL)
 	{
-		swap->stack_a[i - 1] = ft_atol(argv[i], swap);
+		swap->stack_a[i] = ft_atol(swap->args[i], swap);
 		swap->size_a++;
 	}
 	i = -1;
@@ -95,7 +111,7 @@ int	main(int argc, char *argv[])
 	{
 		ft_swap_init(&swap);
 		ft_check_args(&swap, argv);
-		ft_get_number(&swap, argv);
+		ft_get_number(&swap);
 		ft_sort_stack(&swap);
 		ft_free_all(&swap);
 	}

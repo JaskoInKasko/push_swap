@@ -15,17 +15,17 @@
 
 typedef struct s_swap
 {
-	char **args;
-	int	*stack_a;
-	int	*stack_b;
-	int	size_a;
-	int	size_b;
-	int	min_a;
-	int	max_a;
-	int	distance_max_ra;
-	int	distance_max_rra;
-	int	distance_min_ra;
-	int	distance_min_rra;
+	char	**args;
+	int		*stack_a;
+	int		*stack_b;
+	int		size_a;
+	int		size_b;
+	int		min_a;
+	int		max_a;
+	int		distance_max_ra;
+	int		distance_max_rra;
+	int		distance_min_ra;
+	int		distance_min_rra;
 }	t_swap;
 
 //		UTILS
