@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsakanov <jsakanov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/25 13:25:03 by jsakanov          #+#    #+#             */
+/*   Updated: 2024/01/25 13:25:06 by jsakanov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../inc/push_swap.h"
 
-int    ft_atol(const char *nptr, t_swap *swap)
+int	ft_atol(const char *nptr, t_swap *swap)
 {
 	long int	res;
 	int			nb;
@@ -42,10 +53,10 @@ void	ft_check_for_dups(t_swap *swap, int dup, int i)
 
 int	ft_sorted(t_swap *swap)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(++i + 1 < swap->size_a)
+	while (++i + 1 < swap->size_a)
 	{
 		if (swap->stack_a[i] > swap->stack_a[i + 1])
 			return (1);
@@ -69,7 +80,7 @@ void	ft_get_distance_ra(t_swap *swap)
 		swap->distance_min_ra = 2;
 	if (swap->stack_a[3] == swap->min_a)
 		swap->distance_min_ra = 3;
-	if(swap->size_a == 5)
+	if (swap->size_a == 5)
 	{
 		if (swap->stack_a[4] == swap->min_a)
 			swap->distance_min_ra = 4;
@@ -82,7 +93,7 @@ void	ft_get_distance_rra(t_swap *swap)
 {
 	swap->distance_max_rra = 0;
 	swap->distance_min_rra = 0;
-	if(swap->size_a == 5)
+	if (swap->size_a == 5)
 	{
 		if (swap->stack_a[4] == swap->max_a)
 			swap->distance_max_rra = 1;

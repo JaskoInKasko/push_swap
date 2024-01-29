@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 HEAD = push_swap.h
 SRC = Sourcecode/push_swap.c Sourcecode/errors.c Sourcecode/free_all.c Sourcecode/utils.c\
-Sourcecode/utils2.c Sourcecode/sort.c Sourcecode/operations.c\
+Sourcecode/utils2.c Sourcecode/sort.c Sourcecode/operations.c Sourcecode/radix.c\
 
 OBJ = $(SRC:.c=.o)
 NAME = push_swap
