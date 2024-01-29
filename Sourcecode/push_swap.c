@@ -10,15 +10,28 @@ void	ft_swap_init(t_swap *swap)
 	swap->max_a = 0;
 }
 
+void	ft_get_args(t_swap *swap, char *argv[])
+{
+	char	*tmp;
+	int		i;
+
+	tmp = ft_strdup("");
+	i = 0;
+	while(argv[++i] != NULL)
+		tmp = ft_strjoin(argv[i], " ");
+	swap->args = ft_split(tmp, ' ');
+}
+
 void	ft_check_args(t_swap *swap, char *argv[])
 {
 	int	i;
 	int	c;
 
-	i = 0;
 	c = 1;
+	ft_get_args(swap, argv);
 	while(argv[c] != NULL)
 	{
+		i = 0;
 		while(argv[c][i] != '\0')
 		{
 			if (!((argv[c][i] >= '0' && argv[c][i] <= '9')
@@ -31,7 +44,6 @@ void	ft_check_args(t_swap *swap, char *argv[])
 				ft_errors(swap, 1);
 			i++;
 		}
-		i = 0;
 		c++;
 	}
 }
@@ -74,6 +86,7 @@ int	main(int argc, char *argv[])
 		ft_check_args(&swap, argv);
 		ft_get_number(&swap, argv);
 		ft_sort_stack(&swap);
+		ft_free_all(&swap);
 	}
 	return (0);
 }

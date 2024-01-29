@@ -4,6 +4,7 @@
 
 typedef struct s_swap
 {
+	char **args;
 	int	*stack_a;
 	int	*stack_b;
 	int	size_a;
