@@ -18,7 +18,7 @@ int	ft_atol(const char *nptr, t_swap *swap)
 
 	nb = 1;
 	if (ft_strlen(nptr) > 11)
-		ft_errors(swap, 3);
+		ft_errors(swap);
 	while (*nptr != '\0' && ((*nptr == ' ') || (*nptr >= 9 && *nptr <= 13)))
 		nptr++;
 	if (*nptr == '-' || *nptr == '+')
@@ -32,7 +32,7 @@ int	ft_atol(const char *nptr, t_swap *swap)
 	{
 		res = res * 10 + *nptr - 48;
 		if ((res * nb) < -2147483648 || (res > 2147483647 && nb == 1))
-			ft_errors(swap, 3);
+			ft_errors(swap);
 		nptr++;
 	}
 	res = res * nb;
@@ -47,7 +47,7 @@ void	ft_check_for_dups(t_swap *swap, int dup, int i)
 	while (++i_cpy < swap->size_a)
 	{
 		if (dup == swap->stack_a[i_cpy])
-			ft_errors(swap, 4);
+			ft_errors(swap);
 	}
 }
 

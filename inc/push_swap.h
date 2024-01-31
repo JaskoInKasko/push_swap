@@ -52,7 +52,7 @@ void	ft_rev_rotate(t_swap *swap, char *arg);
 void	ft_radix_sort(t_swap *swap);
 
 //		ERROR
-void	ft_errors(t_swap *swap, int n);
+void	ft_errors(t_swap *swap);
 
 //		FREES
 void	ft_free_all(t_swap *swap);

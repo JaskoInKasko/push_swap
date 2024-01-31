@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 #include "../inc/push_swap.h"
 
-void	ft_errors(t_swap *swap, int n)
+void	ft_errors(t_swap *swap)
 {
-	(void)n;
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_free_all(swap);
 }
